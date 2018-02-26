@@ -1,18 +1,22 @@
+import os
+
 import discord
 import asyncio
-import testfunc
-import helpfunc
-import randomgen
-import play_music
-import os
+
+from modules import Testfunc
+from modules import Helpfunc
+from modules import Randomgen
+# from modules import Music
+
 
 with open('token', 'r') as f:
     token = f.readline()[:-1]
 
 client = discord.Client()
 # dict with all available functions and objects of all supported functionality
-tasks = {'test' : testfunc.Testfunc(client), 'random' : randomgen.Randomgen(client), 'music' : play_music.Music(client)}
-tasks['help'] = helpfunc.Helpfunc(client, tasks)
+tasks = {'test' : Testfunc(client), 'random' : Randomgen(client)}
+# tasks = {'test' : Testfunc(client), 'random' : Randomgen(client), 'music' : Music(client)}
+tasks['help'] = Helpfunc(client, tasks)
 
 tip = 'Available commands: `!music`,  `!test`, `!random`, `!help`'
 
